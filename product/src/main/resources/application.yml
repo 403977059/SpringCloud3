@@ -1,0 +1,38 @@
+server:
+  port: 8890
+spring:
+  application:
+    name: product
+
+ribbon:
+  # 请求连接的超时时间
+  ConnectTimeout: 350
+  # 请求处理的超时时间
+  ReadTimeout: 1000
+  # 切换实例的重试次数
+  MaxAutoRetriesNextServer: 2
+  # 对当前实例的重试次数
+#  MaxAutoRetries: 1
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    # 每间隔5s，向服务端发送一次心跳，证明自己依然”存活“
+    lease-renewal-interval-in-seconds: 10
+    # 告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
+    lease-expiration-duration-in-seconds: 12
+  client:
+    # 取服务注册信息时间间隔
+#    registry-fetch-interval-seconds: 1
+#    #从Eureka服务端获取注册信息的时间间隔
+#    registryFetchIntervalSeconds: 1
+#    #更新实例信息变化到Eureka服务端的间隔时间
+#    instanceInfoReplicationIntervalSeconds: 1
+    #是否注册到Eureka中
+    registerWithEureka: true
+    #是否需要去检索寻找服务，默认是true
+#    fetchRegistry: true
+    healthcheck:
+      enabled: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8880/eureka/,http://${eureka.instance.hostname}:8881/eureka/

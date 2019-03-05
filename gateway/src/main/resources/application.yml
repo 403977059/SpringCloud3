@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: gateway
+server:
+  port: 8920
+
+zuul:
+  routes:
+    cloud-base-service:
+      #请求接口前加上"s1"
+      path: /s1/**
+      #路由到对应的服务上
+      serviceId: product
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8880/eureka/,http://${eureka.instance.hostname}:8881/eureka/

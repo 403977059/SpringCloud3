@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: turbine
+server:
+  port: 8871
+management:
+  port: 8875
+turbine:
+  #需要收集监控的服务名
+  app-config: consumer
+#  app-config: dashboard
+  #指定集群名称为"default"
+  cluster-name-expression: "default"
+  #设置为true，可以让同一主机上的服务通过主机名和端口号的组合类进行区分
+  #默认是以host来区分不同的服务，这样就导致本机上的不同的服务聚合成一个服务来统计
+  combine-host-port: true
+eureka:
+  client:
+    #是否注册到Eureka中0
+    registerWithEureka: true
+    #是否需要去检索寻找服务，默认是true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8880/eureka/,http://${eureka.instance.hostname}:8881/eureka/

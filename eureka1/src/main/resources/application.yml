@@ -1,0 +1,20 @@
+server:
+  port: 8880
+spring:
+  application:
+    name: eureka1
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 7000
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 5
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8880/eureka/
