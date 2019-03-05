@@ -1,0 +1,45 @@
+server:
+    port: 7001
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8880/eureka
+
+#配置对称加密密钥
+#encrypt:
+#    key: configKey
+
+#配置非对称加密密钥
+encrypt:
+    key-store:
+        location: config-server.keystore
+        alias: config-server
+        #在命令行第一次输入的密钥库口令
+        password: 123456
+        #最后输入的口令
+        secret: 654321
+
+spring:
+    application:
+        name: config-server
+    cloud:
+        config:
+            server:
+                git:
+#                    uri: https://gitee.com/lfalex/spring-cloud-repo
+                    uri: ******
+#                    search-paths: config
+                    username: root
+                    password: ******
+    #rabbitmq配置信息
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guoxiang
+        password: guoxiang
+
+#忽略权限拦截
+management:
+    security:
+        enabled: false

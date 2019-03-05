@@ -1,0 +1,35 @@
+server:
+  port: 8910
+spring:
+  application:
+    name: feign-consumer
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 # 超时熔断时间
+        timeout:
+          enabled: true # 是否启用超时熔断
+ribbon:
+  # 请求连接的超时时间
+  ConnectTimeout: 350
+  # 请求处理的超时时间
+  ReadTimeout: 3000
+  # 切换实例的重试次数
+  MaxAutoRetriesNextServer: 2
+feign:
+  hystrix:
+    enabled: true
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    #是否注册到Eureka中
+    registerWithEureka: true
+    #是否需要去检索寻找服务，默认是true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8880/eureka/,http://${eureka.instance.hostname}:8881/eureka/

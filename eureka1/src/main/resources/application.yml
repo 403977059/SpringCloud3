@@ -1,0 +1,28 @@
+server:
+  port: 8880
+spring:
+  application:
+    name: eureka1
+eureka:
+  server:
+    enable-self-preservation: false
+    # 此处不开启缓存
+#    use-read-only-response-cache: true
+    # 指定 Eviction Task 定时任务的调度频率，用于剔除过期的实例，此处未使用默认频率，频率为：5/秒，默认为：60/秒
+    # 有效防止的问题是：应用实例异常挂掉，没能在挂掉之前告知Eureka server要下线掉该服务实例信息。这个就需要依赖Eureka server的EvictionTask去剔除。
+    eviction-interval-timer-in-ms: 7000
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    # 开启健康检查
+    healthcheck:
+      enabled: true
+    # 取服务注册信息时间间隔
+    registry-fetch-interval-seconds: 5
+    #是否注册到Eureka中
+    registerWithEureka: false
+    #是否需要去检索寻找服务，默认是true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8880/eureka/

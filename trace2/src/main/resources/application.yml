@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: trace-2
+  #spring.sleuth.sampler.percentage=1，则每次的信息都进入了zipkin
+  sleuth:
+    sampler:
+      percentage: 1
+  #配置日志输出到zipkin的地址
+  zipkin:
+    base-url: http://localhost:9411
+
+server:
+  port: 9102
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8880/eureka
+#配置日志级别
+logging:
+  level:
+    root: info
+
