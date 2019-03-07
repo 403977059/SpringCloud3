@@ -58,6 +58,21 @@
 			<artifactId>zipkin-autoconfigure-ui</artifactId>
 			<version>1.19.2</version>
 		</dependency>
+
+		<!--将日志保存到数据库中-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+			<version>3.8.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

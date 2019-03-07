@@ -1,5 +1,18 @@
 spring:
   application:
     name: zipkin-server
+
+  #配置日志存储到数据库中
+  datasource:
+    schema: classpath:/mysql.sql
+    url: jdbc:mysql://******
+    username: root
+    password: 123456
+    continue-on-error: true
+    initialize: true
+#存储切换到mysql
+zipkin:
+  storage:
+    type: mysql
 server:
   port: 9411
